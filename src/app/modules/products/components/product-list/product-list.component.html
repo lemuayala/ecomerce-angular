@@ -1,0 +1,42 @@
+<div class="container mx-auto p-4">
+  <!-- Barra de búsqueda -->
+  <div class="mb-6">
+    <input
+      type="text"
+      #searchInput
+      (input)="updateSearch(searchInput.value)"
+      placeholder="Buscar productos..."
+      class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+  </div>
+
+  <!-- Estados -->
+  @if (loading()) {
+  <div class="flex justify-center my-8">
+    <div
+      class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"
+    ></div>
+  </div>
+  } @if (error()) {
+  <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
+    <p>{{ error() }}</p>
+  </div>
+  }
+
+  <!-- Lista de productos -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
+    @for (product of filteredProducts(); track product.id) {
+    <app-product-card [product]="product"></app-product-card>
+    } @empty {
+    <div class="col-span-full text-center py-12">
+      <p class="text-gray-500 text-lg">
+        @if (searchQuery()) { No se encontraron productos para "{{
+          searchQuery()
+        }}" } @else { No hay productos disponibles }
+      </p>
+    </div>
+    }
+  </div>
+</div>
