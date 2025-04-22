@@ -1,0 +1,51 @@
+<div
+  class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+>
+  <!-- Imagen del producto -->
+  <div class="relative pb-[75%] overflow-hidden">
+    <img
+      [src]="product.imageUrl"
+      [alt]="product.name"
+      class="absolute h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+    />
+    <!-- Badge de destacado -->
+    @if (product.featured) {
+    <span
+      class="absolute top-2 right-2 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-full"
+    >
+      Destacado
+    </span>
+    }
+  </div>
+
+  <!-- Contenido -->
+  <div class="p-4">
+    <h3 class="font-bold text-lg mb-2 line-clamp-2">{{ product.name }}</h3>
+    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+      {{ product.description }}
+    </p>
+
+    <!-- Precios -->
+    <div class="flex items-center justify-between">
+      @if (product.discount) {
+      <div>
+        <span class="text-gray-400 line-through mr-2">{{
+          product.price | currency
+        }}</span>
+        <span class="text-red-500 font-bold">{{
+          discountPrice() | currency
+        }}</span>
+      </div>
+      } @else {
+      <span class="font-bold">{{ product.price | currency }}</span>
+      }
+
+      <button
+        class="bg-gradient-to-tr from-blue-700/90 to-purple-700/90 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+        [routerLink]="['/products', product.id]"
+      >
+        Ver más
+      </button>
+    </div>
+  </div>
+</div>
