@@ -7,4 +7,6 @@ export interface Product {
   tags?: string[];
   metadata?: { [key: string]: string };
   discount?: number; // Para manejar descuentos
+  imageUrl?: string;
+  featured?: boolean;
 }
