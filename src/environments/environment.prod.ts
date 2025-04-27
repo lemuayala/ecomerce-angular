@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://tudominio.com/api', // Cambiar por tu URL de producción
+  apiUrl:
+    'https://app-ecommerceai-api-hsfagacafdg0g0d3.canadacentral-01.azurewebsites.net/api',
   enableDebug: false,
 };
